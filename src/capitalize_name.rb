@@ -1,12 +1,7 @@
 # capitalize class
-require_relative 'nameable'
+require_relative 'decorator'
 
-class Capitalize < Nameable
-  def initialize(nameable)
-    super()
-    @nameable = nameable
-  end
-
+class Capitalize < Decorator
   def correct_name
     # capitalize the name
     @nameable.correct_name.capitalize
