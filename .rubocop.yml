@@ -1,17 +1,17 @@
 AllCops:
   NewCops: enable
   Exclude:
-    - "Guardfile"
-    - "Rakefile"
-    - "node_modules/**/*"
-    - "Gemfile"
+    - 'Guardfile'
+    - 'Rakefile'
+    - 'node_modules/**/*'
+    - 'Gemfile'
 
   DisplayCopNames: true
 
 Layout/LineLength:
   Max: 120
 Metrics/MethodLength:
-  Max: 20
+  Max: 60
 Metrics/AbcSize:
   Max: 50
 Metrics/ClassLength:
@@ -19,7 +19,6 @@ Metrics/ClassLength:
 Metrics/BlockLength:
   IgnoredMethods: ['describe']
   Max: 30
-
 
 Style/Documentation:
   Enabled: false
@@ -50,4 +49,22 @@ Style/HashEachMethods:
 Style/HashTransformKeys:
   Enabled: false
 Style/HashTransformValues:
+  Enabled: false
+
+GlobalVars:
+  Description: Do not introduce global variables.
+  Enabled: false
+  AllowedVariables: []
+
+Metrics/CyclomaticComplexity:
+  Description: A complexity metric that is strongly correlated to the number of test cases needed to validate a method.
+  Enabled: false
+  Max: 8
+
+Lint/NestedMethodDefinition:
+  Description: Do not use nested method definitions.
+  Enabled: false
+
+Style/OptionalArguments:
+  Description: Checks for optional arguments.
   Enabled: false
