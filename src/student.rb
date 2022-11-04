@@ -1,4 +1,4 @@
-# Student class
+# Student  class
 require_relative 'person'
 
 class Student < Person

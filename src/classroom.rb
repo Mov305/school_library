@@ -1,3 +1,4 @@
+# class Classroom
 class Classroom
   def initialize(label, students = [])
     @label = label

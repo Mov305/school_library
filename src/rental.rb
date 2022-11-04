@@ -1,3 +1,4 @@
+# Rental class
 class Rental
   def initialize(date, book, person)
     @date = date
