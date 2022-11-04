@@ -4,7 +4,7 @@ class Rental
     @book = book
     book.rentals << self
     @person = person
-    person.rentals << self
+    person.rentals << self unless person.rentals.include?(self)
   end
 
   attr_reader :date, :book, :person
