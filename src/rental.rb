@@ -5,6 +5,7 @@ class Rental
     @book = book
     book.rentals << self
     @person = person
+    # p person.rentals
     person.rentals << self unless person.rentals.include?(self)
   end
 
