@@ -1,4 +1,4 @@
-# the trimer class
+# the trimer  class
 require_relative 'decorator'
 
 class Trimmer < Decorator

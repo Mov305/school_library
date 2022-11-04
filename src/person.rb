@@ -1,4 +1,4 @@
-# Person class
+# Person  class
 require_relative 'nameable'
 require_relative 'rental'
 

@@ -34,12 +34,6 @@ To get a local copy up and running follow these simple steps.
 - Open the terminal on your computer
 - Navigate through directories using [change directory (cd)](https://www.howtogeek.com/659411/how-to-change-directories-in-command-prompt-on-windows-10) command to where you want to clone the repository.
 
-- **Type the following command then press "ENTER"**
-
-  > git@github.com:armandocomellas1/Create-your-own-Enumerable.git
-
-- The terminal will display a message to notify you about your download/cloning process.
-
 - **Type the following lists of commands and press "ENTER" after each command:**
 
 - **Open folder in VSC**

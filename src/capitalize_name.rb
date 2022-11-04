@@ -1,4 +1,4 @@
-# capitalize class
+# capitalize  class
 require_relative 'decorator'
 
 class Capitalize < Decorator

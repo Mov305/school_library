@@ -1,4 +1,4 @@
-# decorator path class decorator
+# decorator path class  decorator
 
 require_relative 'nameable'
 

@@ -19,3 +19,7 @@ puts student.classroom.label
 book = Book.new('The Lord of the Rings', 'J. R. R. Tolkien')
 book.add_rental('2021-01-01', person)
 puts book.rentals.inspect
+
+array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+puts array[1]
