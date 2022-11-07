@@ -1,10 +1,10 @@
-require './src/person'
-require './src/trimmer_name'
-require './src/capitalize_name'
-require './src/student'
-require './src/classroom'
-require './src/book'
-require './src/teacher'
+require_relative 'person'
+require_relative 'trimmer_name'
+require_relative 'capitalize_name'
+require_relative 'student'
+require_relative 'classroom'
+require_relative 'book'
+require_relative 'teacher'
 
 class App
   $people_list = []
