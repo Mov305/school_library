@@ -1,7 +1,7 @@
 # main path
 require_relative "app"
 
-def main
+class Options
   $app = App.new
 
   def options(option)
@@ -49,11 +49,13 @@ def main
       run
     end
   end
+end
+
+def main
+  $options = Options.new
 
   def run
     puts "WellCome to School Library App! \n
-        \n
-        \n
         Please choose an option by entering a number: \n
         1 - List all books \n
         2 - List all people \n
@@ -64,7 +66,7 @@ def main
         7 - Exit \n"
 
     option = gets.chomp.to_i
-    options(option)
+    $options.options(option)
   end
 end
 
