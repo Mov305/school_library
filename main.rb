@@ -4,6 +4,22 @@ require_relative "app"
 class Options
   $app = App.new
 
+	attr_reader :str_to_be_print
+
+	def initialize
+		@str_to_be_print = "WellCome to School Library App! \n
+		Please choose an option by entering a number: \n
+		1 - List all books \n
+		2 - List all people \n
+		3 - Create a person \n
+		4 - Create a book \n
+		5 - Create a rental \n
+		6 - List all rentals for a given person id \n
+		7 - Exit \n"
+	end
+
+
+
   def options(option)
     case option
     when 1
@@ -55,18 +71,9 @@ def main
   $options = Options.new
 
   def run
-    puts "WellCome to School Library App! \n
-        Please choose an option by entering a number: \n
-        1 - List all books \n
-        2 - List all people \n
-        3 - Create a person \n
-        4 - Create a book \n
-        5 - Create a rental \n
-        6 - List all rentals for a given person id \n
-        7 - Exit \n"
+    puts $options.str_to_be_print
 
-    option = gets.chomp.to_i
-    $options.options(option)
+    $options.options(gets.chomp.to_i)
   end
 end
 
