@@ -25,24 +25,24 @@ class App
     end
   end
 
-	def input_gets_age_name
-		print 'Age: '
-		age = gets.chomp.to_i
-		print 'Name: '
-		name = gets.chomp
+  def input_gets_age_name
+    print 'Age: '
+    age = gets.chomp.to_i
+    print 'Name: '
+    name = gets.chomp
 
-		{
-			age: age,
-			name: name,
-		}
-	end
+    {
+      age: age,
+      name: name
+    }
+  end
 
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]:'
     sub_option = gets.chomp.to_i
     case sub_option
     when 1
-			person_info = input_gets_age_name
+      person_info = input_gets_age_name
       print 'Has parent permission? [Y/N]'
       permission = gets.chomp
       permission = permission.downcase == 'y'
@@ -50,7 +50,7 @@ class App
       $people_list << student
       puts 'Person created successfully'
     when 2
-			person_info = input_gets_age_name
+      person_info = input_gets_age_name
       print 'Specialization:'
       specialization = gets.chomp
       teacher = Teacher.new(person_info[:age], specialization, person_info[:name])

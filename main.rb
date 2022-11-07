@@ -1,8 +1,15 @@
 # main path
 require './src/app'
 
-def main
-  $app = App.new
+class Main
+  def initialize
+    @app = App.new
+  end
+
+  def run
+    puts str_to_be_print
+    options(gets.chomp.to_i)
+  end
 
   def str_to_be_print
     "WellCome to School Library App! \n
@@ -19,37 +26,37 @@ def main
   def options(option)
     case option
     when 1
-      $app.list_books
+      @app.list_books
       sleep(0.5)
       print 'Press Enter to continue'
       gets.chomp
       run
     when 2
-      $app.list_people
+      @app.list_people
       sleep(0.5)
       print 'Press Enter to continue'
       gets.chomp
       run
     when 3
-      $app.create_person
+      @app.create_person
       sleep(0.5)
       print 'Press Enter to continue'
       gets.chomp
       run
     when 4
-      $app.create_book
+      @app.create_book
       sleep(0.5)
       print 'Press Enter to continue'
       gets.chomp
       run
     when 5
-      $app.create_rental
+      @app.create_rental
       sleep(0.5)
       print 'Press Enter to continue'
       gets.chomp
       run
     when 6
-      $app.list_rentals_for_person_id
+      @app.list_rentals_for_person_id
       sleep(0.5)
       print 'Press Enter to continue'
       gets.chomp
@@ -62,11 +69,7 @@ def main
     end
   end
 
-  def run
-    puts str_to_be_print
-
-    options(gets.chomp.to_i)
-  end
+  private :str_to_be_print, :options
 end
 
-main.run
+Main.new.run
