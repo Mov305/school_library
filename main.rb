@@ -1,8 +1,54 @@
 # main path
-require_relative 'app'
+require_relative "app"
 
 def main
   $app = App.new
+
+  def options(option)
+    case option
+    when 1
+      $app.list_books
+      sleep(0.5)
+      print "Press Enter to continue"
+      gets.chomp
+      run
+    when 2
+      $app.list_people
+      sleep(0.5)
+      print "Press Enter to continue"
+      gets.chomp
+      run
+    when 3
+      $app.create_person
+      sleep(0.5)
+      print "Press Enter to continue"
+      gets.chomp
+      run
+    when 4
+      $app.create_book
+      sleep(0.5)
+      print "Press Enter to continue"
+      gets.chomp
+      run
+    when 5
+      $app.create_rental
+      sleep(0.5)
+      print "Press Enter to continue"
+      gets.chomp
+      run
+    when 6
+      $app.list_rentals_for_person_id
+      sleep(0.5)
+      print "Press Enter to continue"
+      gets.chomp
+      run
+    when 7
+      puts "Thank you for using this app!"
+    else
+      puts "Invalid option"
+      run
+    end
+  end
 
   def run
     puts "WellCome to School Library App! \n
@@ -18,49 +64,7 @@ def main
         7 - Exit \n"
 
     option = gets.chomp.to_i
-    case option
-    when 1
-      $app.list_books
-      sleep(0.5)
-      print 'Press Enter to continue'
-      gets.chomp
-      run
-    when 2
-      $app.list_people
-      sleep(0.5)
-      print 'Press Enter to continue'
-      gets.chomp
-      run
-    when 3
-      $app.create_person
-      sleep(0.5)
-      print 'Press Enter to continue'
-      gets.chomp
-      run
-    when 4
-      $app.create_book
-      sleep(0.5)
-      print 'Press Enter to continue'
-      gets.chomp
-      run
-    when 5
-      $app.create_rental
-      sleep(0.5)
-      print 'Press Enter to continue'
-      gets.chomp
-      run
-    when 6
-      $app.list_rentals_for_person_id
-      sleep(0.5)
-      print 'Press Enter to continue'
-      gets.chomp
-      run
-    when 7
-      puts 'Thank you for using this app!'
-    else
-      puts 'Invalid option'
-      run
-    end
+    options(option)
   end
 end
 
