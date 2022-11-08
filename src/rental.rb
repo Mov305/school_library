@@ -5,9 +5,16 @@ class Rental
     @book = book
     book.rentals << self
     @person = person
-    # p person.rentals
     person.rentals << self unless person.rentals.include?(self)
   end
+
+	def to_map
+		{
+			"date": @date,
+			"book": @book.title,
+			"person": @person.id,
+		}
+	end
 
   attr_reader :date, :book, :person
 end

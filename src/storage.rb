@@ -74,6 +74,18 @@ class Storage
     end
   end
 
+	def add_rental(rental)
+		map = []
+		if (File.exist?("src/JSONs/rentals.json"))
+			map = JSON.parse File.open("src/JSONs/rentals.json").read
+		end
+		map.push(rental.to_map)
+
+		file = File.open("src/JSONs/rentals.json", "w")
+		file.write JSON.generate map
+		file.close
+	end
+
   def rentals_from_map
     if (File.exist?("src/JSONs/rentals.json") and File.exist?("src/JSONs/books.json") and File.exist?("src/JSONs/persons.json"))
       map = JSON.parse File.open("src/JSONs/rentals.json").read

@@ -105,6 +105,7 @@ class App
     needed_book.add_rental(date, needed_person)
     rental = Rental.new(date, needed_book, needed_person)
     $rental_list << rental
+		$storage.add_rental rental
     puts "Rental created successfully"
   end
 
