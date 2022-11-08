@@ -80,7 +80,9 @@ class Storage
   end
 
   def rentals_from_map
-    unless File.exist?('src/JSONs/rentals.json') and File.exist?('src/JSONs/books.json') and File.exist?('src/JSONs/persons.json')
+    unless File.exist?('src/JSONs/rentals.json')	&&
+           File.exist?('src/JSONs/books.json')	&&
+           File.exist?('src/JSONs/persons.json')
       return
     end
 
