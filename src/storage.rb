@@ -11,49 +11,55 @@ class Storage
   $rental_list = []
 
   def persons_from_map
-    map = JSON.parse File.open("src/JSONs/persons.json").read
-    map.each do |person|
-      if (person["classroom"])
-        $person_list.push Student.new(
-          person["age"],
-          nil,
-          person["name"],
-          person["permission"],
-          person["id"],
-        )
-      else
-        $person_list.push Teacher.new(
-          person["age"],
-          person["specialization"],
-          person["name"],
-          person["permission"],
-          person["id"],
-        )
+    if (File.exist?("src/JSONs/persons.json"))
+      map = JSON.parse File.open("src/JSONs/persons.json").read
+      map.each do |person|
+        if (person["classroom"])
+          $person_list.push Student.new(
+            person["age"],
+            nil,
+            person["name"],
+            person["permission"],
+            person["id"],
+          )
+        else
+          $person_list.push Teacher.new(
+            person["age"],
+            person["specialization"],
+            person["name"],
+            person["permission"],
+            person["id"],
+          )
+        end
       end
     end
     $person_list
   end
 
   def books_from_map
-    map = JSON.parse File.open("src/JSONs/books.json").read
-    map.each do |book|
-      $book_list.push Book.new(
-        book["title"],
-        book["author"],
-      )
+    if (File.exist?("src/JSONs/books.json"))
+      map = JSON.parse File.open("src/JSONs/books.json").read
+      map.each do |book|
+        $book_list.push Book.new(
+          book["title"],
+          book["author"],
+        )
+      end
+      $book_list
     end
-    $book_list
   end
 
   def rentals_from_map
-    map = JSON.parse File.open("src/JSONs/rentals.json").read
-    map.each do |rental|
-      $rental_list.push Rental.new(
-        rental["date"],
-        $book_list.find { |book| book.title == rental["book"] },
-        $person_list.find { |p| p.id == rental["person"] },
-      )
+    if (File.exist?("src/JSONs/rentals.json") and File.exist?("src/JSONs/books.json") and File.exist?("src/JSONs/persons.json"))
+      map = JSON.parse File.open("src/JSONs/rentals.json").read
+      map.each do |rental|
+        $rental_list.push Rental.new(
+          rental["date"],
+          $book_list.find { |book| book.title == rental["book"] },
+          $person_list.find { |p| p.id == rental["person"] },
+        )
+      end
+      $rental_list
     end
-    $rental_list
   end
 end
