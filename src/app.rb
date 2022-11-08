@@ -1,118 +1,116 @@
-require_relative "person"
-require_relative "trimmer_name"
-require_relative "capitalize_name"
-require_relative "student"
-require_relative "classroom"
-require_relative "book"
-require_relative "teacher"
-require_relative "storage"
+require_relative 'person'
+require_relative 'trimmer_name'
+require_relative 'capitalize_name'
+require_relative 'student'
+require_relative 'classroom'
+require_relative 'book'
+require_relative 'teacher'
+require_relative 'storage'
 
 class App
   $people_list = []
   $book_list = []
   $rental_list = []
-	$storage = Storage.new()
+  $storage = Storage.new
 
   def read_from_storage
-
-
     $people_list = $storage.persons_from_map
     $book_list = $storage.books_from_map
     $rental_list = $storage.rentals_from_map
   end
 
   def list_books
-    puts "List of books"
+    puts 'List of books'
     $book_list.each do |book|
       puts "Title: #{book.title}, Author: #{book.author}"
     end
   end
 
   def list_people
-    puts "List of people"
+    puts 'List of people'
     $people_list.each do |person|
       puts "Type: #{person.class}, Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
   end
 
   def input_gets_age_name
-    print "Age: "
+    print 'Age: '
     age = gets.chomp.to_i
-    print "Name: "
+    print 'Name: '
     name = gets.chomp
 
     {
       age: age,
-      name: name,
+      name: name
     }
   end
 
   def create_person
-    print "Do you want to create a student (1) or a teacher (2)? [Input the number]:"
+    print 'Do you want to create a student (1) or a teacher (2)? [Input the number]:'
     sub_option = gets.chomp.to_i
     case sub_option
     when 1
       person_info = input_gets_age_name
-      print "Has parent permission? [Y/N]"
+      print 'Has parent permission? [Y/N]'
       permission = gets.chomp
-      permission = permission.downcase == "y"
+      permission = permission.downcase == 'y'
       student = Student.new(person_info[:age], nil, person_info[:name], permission, false)
       $people_list << student
-			$storage.add_person student
-      puts "Person created successfully"
+      $storage.add_person student
+      puts 'Person created successfully'
     when 2
       person_info = input_gets_age_name
-      print "Specialization:"
+      print 'Specialization:'
       specialization = gets.chomp
       teacher = Teacher.new(person_info[:age], specialization, person_info[:name], true, false)
       $people_list << teacher
-			$storage.add_person teacher
-      puts "Person created successfully"
+      $storage.add_person teacher
+      puts 'Person created successfully'
     else
-      puts "Invalid option"
+      puts 'Invalid option'
       create_person
     end
   end
 
   def create_book
-    print "Title: "
+    print 'Title: '
     title = gets.chomp
-    print "Author: "
+    print 'Author: '
     author = gets.chomp
     book = Book.new(title, author)
     $book_list << book
-		$storage.add_book book
-    puts "Book created and storaged successfully"
+    $storage.add_book book
+    puts 'Book created and storaged successfully'
   end
 
   def create_rental
-    puts "Chose a book from the following list by number"
+    puts 'Chose a book from the following list by number'
     $book_list.each_with_index do |book, index|
       puts "#{index + 1}) Title: #{book.title}, Author: #{book.author}"
     end
-    print "Book number: "
+    print 'Book number: '
     book_number = gets.chomp.to_i - 1
-    puts "Chose a person from the following list by number"
+    puts 'Chose a person from the following list by number'
     $people_list.each_with_index do |person, index|
       puts "#{index + 1}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
-    print "Person number: "
+    print 'Person number: '
     person_number = gets.chomp.to_i - 1
-    print "Date: "
+    print 'Date: '
     date = gets.chomp
     needed_book = $book_list.at(book_number)
     needed_person = $people_list.at(person_number)
     needed_book.add_rental(date, needed_person)
     rental = Rental.new(date, needed_book, needed_person)
     $rental_list << rental
-		$storage.add_rental rental
-    puts "Rental created successfully"
+    $storage.add_rental rental
+    puts 'Rental created successfully'
   end
 
   def list_rentals_for_person_id
-    print "ID of person: "
+    print 'ID of person: '
     id = gets.chomp.to_i
-    puts "Rentals:"
+    puts 'Rentals:'
     $rental_list.each do |rental|
       if rental.person.id == id
         puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}, Person: #{rental.person.name}"

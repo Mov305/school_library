@@ -1,8 +1,8 @@
 # Student  class
-require_relative "person"
+require_relative 'person'
 
 class Student < Person
-  def initialize(age, classroom = nil, name = "Unknown", parent_permission, id)
+  def initialize(age, classroom = nil, name = 'Unknown', parent_permission, id)
     super(age, name, id)
     @classroom = classroom
     classroom&.add_student(self)
@@ -12,6 +12,6 @@ class Student < Person
   attr_accessor :classroom
 
   def play_hooky
-    "¯(ツ)/¯"
+    '¯(ツ)/¯'
   end
 end

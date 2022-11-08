@@ -8,13 +8,13 @@ class Rental
     person.rentals << self unless person.rentals.include?(self)
   end
 
-	def to_map
-		{
-			"date": @date,
-			"book": @book.title,
-			"person": @person.id,
-		}
-	end
+  def to_map
+    {
+      date: @date,
+      book: @book.title,
+      person: @person.id
+    }
+  end
 
   attr_reader :date, :book, :person
 end
