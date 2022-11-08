@@ -8,6 +8,12 @@ class Teacher < Person
     @parent_permission = parent_permission || true
   end
 
+	def to_map
+		map = super()
+		map["specialization"] = @specialization
+		map
+	end
+
   def can_use_services?
     true
   end

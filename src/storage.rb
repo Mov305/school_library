@@ -10,22 +10,35 @@ class Storage
   $book_list = []
   $rental_list = []
 
+
+	def add_person(person)
+		map = []
+		if (File.exist?("src/JSONs/persons.json"))
+			map = JSON.parse File.open("src/JSONs/persons.json").read
+		end
+		map.push(person.to_map)
+
+		file = File.open("src/JSONs/persons.json", "w")
+		file.write JSON.generate map
+		file.close
+	end
+
   def persons_from_map
     if (File.exist?("src/JSONs/persons.json"))
       map = JSON.parse File.open("src/JSONs/persons.json").read
       map.each do |person|
-        if (person["classroom"])
-          $person_list.push Student.new(
+        if (person["specialization"])
+          $person_list.push Teacher.new(
             person["age"],
-            nil,
+            person["specialization"],
             person["name"],
             person["permission"],
             person["id"],
           )
         else
-          $person_list.push Teacher.new(
+          $person_list.push Student.new(
             person["age"],
-            person["specialization"],
+            nil,
             person["name"],
             person["permission"],
             person["id"],
@@ -36,7 +49,6 @@ class Storage
     $person_list
   end
 
-
 	def add_book(book)
 		map = []
 		if (File.exist?("src/JSONs/books.json"))
@@ -44,7 +56,9 @@ class Storage
 		end
 		map.push(book.to_map)
 
-		File.open("src/JSONs/books.json", "w").write JSON.generate map
+		file = File.open("src/JSONs/books.json", "w")
+		file.write JSON.generate map
+		file.close
 	end
 
   def books_from_map

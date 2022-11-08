@@ -19,6 +19,15 @@ class Person < Nameable
     Rental.new(date, book, self)
   end
 
+	def to_map
+		{
+			"id": @id,
+			"name": @name,
+			"age": @age,
+			"permission": @parent_permission,
+		}
+	end
+
   def age_of?
     @age >= 18
   end
