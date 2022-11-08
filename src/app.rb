@@ -55,14 +55,14 @@ class App
       print "Has parent permission? [Y/N]"
       permission = gets.chomp
       permission = permission.downcase == "y"
-      student = Student.new(person_info[:age], nil, person_info[:name], permission)
+      student = Student.new(person_info[:age], nil, person_info[:name], permission, false)
       $people_list << student
       puts "Person created successfully"
     when 2
       person_info = input_gets_age_name
       print "Specialization:"
       specialization = gets.chomp
-      teacher = Teacher.new(person_info[:age], specialization, person_info[:name])
+      teacher = Teacher.new(person_info[:age], specialization, person_info[:name], true, false)
       $people_list << teacher
       puts "Person created successfully"
     else

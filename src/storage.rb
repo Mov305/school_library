@@ -19,6 +19,7 @@ class Storage
           nil,
           person["name"],
           person["permission"],
+          person["id"],
         )
       else
         $person_list.push Teacher.new(
@@ -26,6 +27,7 @@ class Storage
           person["specialization"],
           person["name"],
           person["permission"],
+          person["id"],
         )
       end
     end
@@ -49,13 +51,9 @@ class Storage
       $rental_list.push Rental.new(
         rental["date"],
         $book_list.find { |book| book.title == rental["book"] },
-        $person_list.find { |p| p.id == rental["person"] or p.name == rental["person"] },
+        $person_list.find { |p| p.id == rental["person"] },
       )
     end
     $rental_list
   end
 end
-
-# Storage.new.persons_from_map
-# Storage.new.books_from_map
-# p Storage.new.rentals_from_map[0].person.id
