@@ -36,6 +36,17 @@ class Storage
     $person_list
   end
 
+
+	def add_book(book)
+		map = []
+		if (File.exist?("src/JSONs/books.json"))
+			map = JSON.parse File.open("src/JSONs/books.json").read
+		end
+		map.push(book.to_map)
+
+		File.open("src/JSONs/books.json", "w").write JSON.generate map
+	end
+
   def books_from_map
     if (File.exist?("src/JSONs/books.json"))
       map = JSON.parse File.open("src/JSONs/books.json").read

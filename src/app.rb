@@ -11,13 +11,14 @@ class App
   $people_list = []
   $book_list = []
   $rental_list = []
+	$storage = Storage.new()
 
   def read_from_storage
-    storage = Storage.new()
 
-    $people_list = storage.persons_from_map
-    $book_list = storage.books_from_map
-    $rental_list = storage.rentals_from_map
+
+    $people_list = $storage.persons_from_map
+    $book_list = $storage.books_from_map
+    $rental_list = $storage.rentals_from_map
   end
 
   def list_books
@@ -78,7 +79,8 @@ class App
     author = gets.chomp
     book = Book.new(title, author)
     $book_list << book
-    puts "Book created successfully"
+		$storage.add_book book
+    puts "Book created and storaged successfully"
   end
 
   def create_rental
