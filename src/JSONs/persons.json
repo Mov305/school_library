@@ -1,0 +1,14 @@
+[
+	{
+		"name": "Jeson Student",
+		"age": 19,
+		"permission": true,
+		"classroom": "Ruby"
+	},
+	{
+		"name": "Jeson teacher",
+		"age": 19,
+		"permission": false,
+		"specialization": "Ruby"
+	}
+]

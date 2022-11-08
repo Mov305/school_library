@@ -5,11 +5,17 @@ require_relative 'student'
 require_relative 'classroom'
 require_relative 'book'
 require_relative 'teacher'
-
+require_relative 'storage'
 class App
   $people_list = []
   $book_list = []
   $rental_list = []
+
+	def read_from_storage
+		storage = Storage.new()
+
+		$people_list = storage.persons_from_map
+	end
 
   def list_books
     puts 'List of books'

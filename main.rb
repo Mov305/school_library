@@ -4,6 +4,7 @@ require './src/app'
 class Main
   def initialize
     @app = App.new
+		@app.read_from_storage
   end
 
   def run
