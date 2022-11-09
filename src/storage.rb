@@ -21,6 +21,7 @@ class Storage
   end
 
   def persons_from_map
+    $person_list = []
     if File.exist?('src/JSONs/persons.json')
       map = JSON.parse File.read('src/JSONs/persons.json')
       map.each do |person|
@@ -57,7 +58,8 @@ class Storage
   end
 
   def books_from_map
-    return unless File.exist?('src/JSONs/books.json')
+    $book_list = []
+    return $book_list unless File.exist?('src/JSONs/books.json')
 
     map = JSON.parse File.read('src/JSONs/books.json')
     map.each do |book|
@@ -80,10 +82,11 @@ class Storage
   end
 
   def rentals_from_map
+    $rental_list = []
     unless File.exist?('src/JSONs/rentals.json')	&&
            File.exist?('src/JSONs/books.json')	&&
            File.exist?('src/JSONs/persons.json')
-      return
+      return $rental_list
     end
 
     map = JSON.parse File.read('src/JSONs/rentals.json')
