@@ -2,6 +2,9 @@
 require_relative 'person'
 
 class Teacher < Person
+
+  attr_reader :specialization
+
   def initialize(age, specialization, name = 'Unknown', parent_permission, id)
     super(age, name, id)
     @specialization = specialization
@@ -10,7 +13,7 @@ class Teacher < Person
 
   def to_map
     map = super()
-    map['specialization'] = @specialization
+    map[:specialization] = @specialization
     map
   end
 
