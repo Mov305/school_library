@@ -68,3 +68,7 @@ Lint/NestedMethodDefinition:
 Style/OptionalArguments:
   Description: Checks for optional arguments.
   Enabled: false
+
+# DISABLE CRLF for windows systems
+Layout/EndOfLine:
+  EnforcedStyle: lf

@@ -1,15 +1,23 @@
-require './src/person'
-require './src/trimmer_name'
-require './src/capitalize_name'
-require './src/student'
-require './src/classroom'
-require './src/book'
-require './src/teacher'
+require_relative 'person'
+require_relative 'trimmer_name'
+require_relative 'capitalize_name'
+require_relative 'student'
+require_relative 'classroom'
+require_relative 'book'
+require_relative 'teacher'
+require_relative 'storage'
 
 class App
   $people_list = []
   $book_list = []
   $rental_list = []
+  $storage = Storage.new
+
+  def read_from_storage
+    $people_list = $storage.persons_from_map
+    $book_list = $storage.books_from_map
+    $rental_list = $storage.rentals_from_map
+  end
 
   def list_books
     puts 'List of books'
@@ -25,30 +33,38 @@ class App
     end
   end
 
+  def input_gets_age_name
+    print 'Age: '
+    age = gets.chomp.to_i
+    print 'Name: '
+    name = gets.chomp
+
+    {
+      age: age,
+      name: name
+    }
+  end
+
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]:'
     sub_option = gets.chomp.to_i
     case sub_option
     when 1
-      print 'Age: '
-      age = gets.chomp.to_i
-      print 'Name: '
-      name = gets.chomp
+      person_info = input_gets_age_name
       print 'Has parent permission? [Y/N]'
       permission = gets.chomp
       permission = permission.downcase == 'y'
-      student = Student.new(age, nil, name, permission)
+      student = Student.new(person_info[:age], nil, person_info[:name], permission, false)
       $people_list << student
+      $storage.add_person student
       puts 'Person created successfully'
     when 2
-      print 'Age: '
-      age = gets.chomp.to_i
-      print 'Name: '
-      name = gets.chomp
+      person_info = input_gets_age_name
       print 'Specialization:'
       specialization = gets.chomp
-      teacher = Teacher.new(age, specialization, name)
+      teacher = Teacher.new(person_info[:age], specialization, person_info[:name], true, false)
       $people_list << teacher
+      $storage.add_person teacher
       puts 'Person created successfully'
     else
       puts 'Invalid option'
@@ -63,7 +79,8 @@ class App
     author = gets.chomp
     book = Book.new(title, author)
     $book_list << book
-    puts 'Book created successfully'
+    $storage.add_book book
+    puts 'Book created and storaged successfully'
   end
 
   def create_rental
@@ -86,6 +103,7 @@ class App
     needed_book.add_rental(date, needed_person)
     rental = Rental.new(date, needed_book, needed_person)
     $rental_list << rental
+    $storage.add_rental rental
     puts 'Rental created successfully'
   end
 

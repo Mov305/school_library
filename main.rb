@@ -1,56 +1,63 @@
 # main path
-require_relative 'app'
+require './src/app'
 
-def main
-  $app = App.new
+class Main
+  def initialize
+    @app = App.new
+    @app.read_from_storage
+  end
 
   def run
-    puts "WellCome to School Library App! \n
-        \n
-        \n
-        Please choose an option by entering a number: \n
-        1 - List all books \n
-        2 - List all people \n
-        3 - Create a person \n
-        4 - Create a book \n
-        5 - Create a rental \n
-        6 - List all rentals for a given person id \n
-        7 - Exit \n"
+    puts str_to_be_print
+    options(gets.chomp.to_i)
+  end
 
-    option = gets.chomp.to_i
+  def str_to_be_print
+    "WellCome to School Library App! \n
+    Please choose an option by entering a number: \n
+    1 - List all books \n
+    2 - List all people \n
+    3 - Create a person \n
+    4 - Create a book \n
+    5 - Create a rental \n
+    6 - List all rentals for a given person id \n
+    7 - Exit \n"
+  end
+
+  def options(option)
     case option
     when 1
-      $app.list_books
+      @app.list_books
       sleep(0.5)
       print 'Press Enter to continue'
       gets.chomp
       run
     when 2
-      $app.list_people
+      @app.list_people
       sleep(0.5)
       print 'Press Enter to continue'
       gets.chomp
       run
     when 3
-      $app.create_person
+      @app.create_person
       sleep(0.5)
       print 'Press Enter to continue'
       gets.chomp
       run
     when 4
-      $app.create_book
+      @app.create_book
       sleep(0.5)
       print 'Press Enter to continue'
       gets.chomp
       run
     when 5
-      $app.create_rental
+      @app.create_rental
       sleep(0.5)
       print 'Press Enter to continue'
       gets.chomp
       run
     when 6
-      $app.list_rentals_for_person_id
+      @app.list_rentals_for_person_id
       sleep(0.5)
       print 'Press Enter to continue'
       gets.chomp
@@ -62,6 +69,8 @@ def main
       run
     end
   end
+
+  private :str_to_be_print, :options
 end
 
-main.run
+Main.new.run

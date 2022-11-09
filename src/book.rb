@@ -11,5 +11,12 @@ class Book
     Rental.new(date, self, person)
   end
 
+  def to_map
+    {
+      title: title,
+      author: author
+    }
+  end
+
   attr_accessor :title, :author, :rentals
 end
